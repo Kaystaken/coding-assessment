@@ -13,11 +13,11 @@ To help familiarize you with these tests that are often used in interviews and b
 
 ### Problem Solved
 
-Users can practise being timed while answering questions and testing their knowledge so they can go into an intervirew more prepared.
+Users can practise being timed while answering questions and testing their knowledge so they can go into an interview more prepared.
 
 ### Learnings
 
-We learned to create timers, display messages and to keep track of points as well as store them along with other data in local storage.
+We learned to create timers, display multiple questions with the option to click from a variety of answers. We are able to keep track of the score as well as store them along with other data in local storage. To store groups of data in a single variable, we use arrays, the entire array can be accessed by using the array's name. To log a single element, we use the name of the array with the index in brackets and Arrays are zero-indexed, so the index of first element in the array is 0. The index can be used in place of data in an array.
 
 ## Installation
 
