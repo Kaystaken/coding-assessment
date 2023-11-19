@@ -15,7 +15,7 @@
       </header>
       <div class="card">
         <div class="card-body">
-          <div id="intro">
+          <div id="instructions">
             <h1>Coding Quiz</h1>
             <h2>
               Try to answer the following code related questions within the time limit.
@@ -29,6 +29,17 @@
             <button id="answer-2"></button>
             <button id="answer-3"></button>
             <button id="answer-4"></button>
+          </div>
+          <div id="ending">
+            <h1>All done!</h1>
+            <h2>Your final score is <span id="score"></span></h2>
+            <form method="POST">
+              <div class="input-group">
+                <label for="initials">Enter initials:</label>
+                <input type="text" name="initials" id="initials" />
+              </div>
+              <button id="submit">Submit</button>
+            </form>
           </div>
         </div>
         <div class="card-footer">

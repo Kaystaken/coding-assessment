@@ -45,9 +45,10 @@ header {
   padding: 30px 40px;
 }
 
-#intro h1 {
+#instructions h1 {
   text-align: center;
 }
+
 .card-body {
   min-height: 100px;
 }

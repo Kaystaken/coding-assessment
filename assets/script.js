@@ -1,4 +1,4 @@
-var timeLeft = 120;
+var timeLeft = 60;
 var currentQuestion = 0;
 
 var questionList = [
@@ -29,9 +29,11 @@ var questionList = [
     }
 ];
 
-var instructions = document.querySelector("#intro");
+var instructions = document.querySelector("#instructions");
 var questions = document.querySelector("#questions");
+var ending = document.querySelector("#ending");
 questions.setAttribute("style", "display: none;");
+ending.setAttribute("style", "display: none;");
 
 var questionText = document.querySelector("#question-text");
 var answer1 = document.querySelector("#answer-1");
@@ -57,6 +59,13 @@ function startQuiz() {
     questions.setAttribute("style", "");
 }
 
+function endQuiz() {
+    // display none hides the questions
+    questions.setAttribute("style", "display: none;");
+    // removing display none reveals the ending
+    ending.setAttribute("style", "");
+}
+
 function displayQuestion(questionNumber) {
     var question = questionList[questionNumber];
     questionText.textContent = question.question;
@@ -68,7 +77,12 @@ function displayQuestion(questionNumber) {
 
 function nextQuestion() {
     currentQuestion++;
-    displayQuestion(currentQuestion);
+
+    if (currentQuestion >= questionList.length) {
+        endQuiz();
+    } else {
+        displayQuestion(currentQuestion);
+    }
 }
 
 function startTimer() {
@@ -82,6 +96,7 @@ function startTimer() {
         if(timeLeft === 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
+            endQuiz();
         }
     }, 1000);
   }
