@@ -1,3 +1,6 @@
+var timeLeft = 120;
+var currentQuestion = 0;
+
 var questionList = [
     {
         question: "Commonly used datas types DO NOT include:",
@@ -32,16 +35,25 @@ questions.setAttribute("style", "display: none;");
 
 var questionText = document.querySelector("#question-text");
 var answer1 = document.querySelector("#answer-1");
+answer1.addEventListener("click", nextQuestion);
 var answer2 = document.querySelector("#answer-2");
+answer2.addEventListener("click", nextQuestion);
 var answer3 = document.querySelector("#answer-3");
+answer3.addEventListener("click", nextQuestion);
 var answer4 = document.querySelector("#answer-4");
+answer4.addEventListener("click", nextQuestion);
 
 var startButton = document.querySelector("#start-quiz");
-startButton.addEventListener("click", displayQuestions);
+// start quiz button makes timer and quiz begin
+startButton.addEventListener("click", startQuiz);
 displayQuestion(0);
 
-function displayQuestions() {
+// displays the questions/starts the quiz
+function startQuiz() {
+    startTimer();
+    // display none hides the instructions
     instructions.setAttribute("style", "display: none;");
+    // removing display none reveals the question
     questions.setAttribute("style", "");
 }
 
@@ -53,3 +65,23 @@ function displayQuestion(questionNumber) {
     answer3.textContent = question.answers[2];
     answer4.textContent = question.answers[3];
 }
+
+function nextQuestion() {
+    currentQuestion++;
+    displayQuestion(currentQuestion);
+}
+
+function startTimer() {
+    var timer = document.querySelector("#time-left");
+    timer.textContent = timeLeft;
+    // Sets interval in variable
+    var timerInterval = setInterval(function() {
+        timeLeft--;
+        timer.textContent = timeLeft;
+
+        if(timeLeft === 0) {
+            // Stops execution of action at set interval
+            clearInterval(timerInterval);
+        }
+    }, 1000);
+  }
