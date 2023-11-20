@@ -1,5 +1,6 @@
 var timeLeft = 60;
 var currentQuestion = 0;
+var timer;
 
 var questionList = [
     {
@@ -60,7 +61,7 @@ displayQuestion(0);
 
 // displays the questions/starts the quiz
 function startQuiz() {
-    startTimer();
+    timer = startTimer();
     // display none hides the instructions
     instructions.setAttribute("style", "display: none;");
     // removing display none reveals the question
@@ -68,6 +69,11 @@ function startQuiz() {
 }
 
 function endQuiz() {
+    clearInterval(timer);
+    var endTime = document.querySelector("#time-left");
+    endTime.textContent = timeLeft;
+    var score = document.querySelector("#score");
+    score.textContent = timeLeft;
     // display none hides the questions
     questions.setAttribute("style", "display: none;");
     // removing display none reveals the ending
@@ -124,4 +130,5 @@ function startTimer() {
             endQuiz();
         }
     }, 1000);
+    return timerInterval;
   }
