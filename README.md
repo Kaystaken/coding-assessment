@@ -26,6 +26,7 @@ N/A
 ## Usage
  <img width="1178" alt="Screenshot 2023-11-21 at 9 25 16 AM" src="https://github.com/Kaystaken/coding-assessment/assets/148396597/316ca3eb-4df9-4b9a-8124-033000540ac9">
 
+ https://kaystaken.github.io/coding-assessment/
 
 ## Credits
 
