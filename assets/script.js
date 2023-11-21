@@ -2,6 +2,7 @@ var timeLeft = 60;
 var currentQuestion = 0;
 var timer;
 
+//questions and answers are put into an array
 var questionList = [
     {
         question: "Commonly used datas types DO NOT include:",
@@ -34,6 +35,8 @@ var instructions = document.querySelector("#instructions");
 var questions = document.querySelector("#questions");
 var ending = document.querySelector("#ending");
 var highScores = document.querySelector("#high-scores");
+
+//display none hides them when I don't want them shown
 questions.setAttribute("style", "display: none;");
 ending.setAttribute("style", "display: none;");
 highScores.setAttribute("style", "display: none;");
@@ -56,9 +59,12 @@ answer4.addEventListener("click", function () {
     nextQuestion(3);
 });
 
+//activated submit button
 var submit = document.querySelector("#submit");
 submit.addEventListener("click", submitInitials);
 
+
+//allows you to view high scores
 var viewHighScore = document.querySelector("#view-high-score");
 viewHighScore.addEventListener("click", displayHighScores);
 
@@ -72,6 +78,7 @@ var startButton = document.querySelector("#start-quiz");
 // start quiz button makes timer and quiz begin
 startButton.addEventListener("click", startQuiz);
 displayQuestion(0);
+
 
 function displayInstructions() {
     highScores.setAttribute("style", "display: none;");
@@ -101,6 +108,7 @@ function endQuiz() {
     ending.setAttribute("style", "");
 }
 
+//displays questions and answer options from the array
 function displayQuestion(questionNumber) {
     var question = questionList[questionNumber];
     questionText.textContent = question.question;
@@ -114,6 +122,7 @@ function nextQuestion(answerIndex) {
     var question = questionList[currentQuestion];
     var isCorrect = answerIndex === question.correctAnswerIndex;
     
+    //10 seconds is subtracted when ansers are incorrect
     if (!isCorrect) {
         timeLeft -= 10;
     }
@@ -121,6 +130,7 @@ function nextQuestion(answerIndex) {
     displayResult(isCorrect);
     currentQuestion++;
 
+    //quiz ends when there are no more questions
     if (currentQuestion >= questionList.length) {
         endQuiz();
     } else {
@@ -128,6 +138,7 @@ function nextQuestion(answerIndex) {
     }
 }
 
+//this function displays the result (correct/wrong)
 function displayResult(isCorrect) {
     var result = document.querySelector("#result");
     if (isCorrect) {
@@ -145,13 +156,12 @@ function clearResult() {
 function startTimer() {
     var timer = document.querySelector("#time-left");
     timer.textContent = timeLeft;
-    // Sets interval in variable
+
     var timerInterval = setInterval(function() {
         timeLeft--;
         timer.textContent = timeLeft;
 
         if(timeLeft === 0) {
-            // Stops execution of action at set interval
             clearInterval(timerInterval);
             endQuiz();
         }
@@ -177,6 +187,7 @@ function submitInitials(event) {
     displayHighScores();
 }
 
+// result is cleared when high score page is showing as well as when quiz restarts
 function displayHighScores() {
     clearResult();
     instructions.setAttribute("style", "display: none;");
