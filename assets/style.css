@@ -71,7 +71,7 @@ header {
   display: block;
   clear: both;
 }
-
+/*start quiz button was unique with dashes so I gave it an id to style it different without affecting the others*/
 #start-quiz {
   border: dashed;
   background-color: hsl(195, 91%, 36%);
@@ -87,6 +87,7 @@ header {
   text-align: center; 
 }
 
+
 button {
   border: solid;
   background-color: hsl(195, 91%, 36%);
@@ -100,6 +101,7 @@ button {
   margin: 16px 16px 16px 20px;
   padding: 14px 34px;
   text-align: center;
+  
 }
 
 @media (max-width: 690px) {
@@ -120,6 +122,25 @@ button {
   flex-wrap: none;
   display: block;
 }
+
+/* The user's cursor is positioned over the element */
+button:hover {
+  background-color: #f3f68e;
+  color: #101010;
+}
+
+/* The user is actively pressing down on the element */
+button:active {
+  font-size: 150%;
+  box-shadow: 0 0 10px #000 inset;
+}
+
+/* The element is currently in focus, either by tabbing to or clicking on it */
+button:focus {
+  outline: none;
+  border-color: #8ac4ff;
+}
+
 #initials {
   font-size: larger;
 }
