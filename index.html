@@ -10,7 +10,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h3>View high scores</h3>
+        <button id="view-high-score">View high scores</button>
         <h3>Time: <span id="time-left"></span></h3>
       </header>
       <div class="card">
@@ -32,7 +32,7 @@
           </div>
           <div id="ending">
             <h1>All done!</h1>
-            <h2>Your final score is <span id="score"></span></h2>
+            <h2>Your final score is: <span id="score"></span></h2>
             <form method="POST">
               <div class="input-group">
                 <label for="initials">Enter initials:</label>
@@ -40,6 +40,12 @@
               </div>
               <button id="submit">Submit</button>
             </form>
+          </div>
+          <div id="high-scores">
+            <h1>High scores</h1>
+            <ul id="scores"></ul>
+            <button id="back">Go back</button>
+            <button id="clear">Clear high scores</button>
           </div>
         </div>
         <div class="card-footer">

@@ -33,8 +33,10 @@ var questionList = [
 var instructions = document.querySelector("#instructions");
 var questions = document.querySelector("#questions");
 var ending = document.querySelector("#ending");
+var highScores = document.querySelector("#high-scores");
 questions.setAttribute("style", "display: none;");
 ending.setAttribute("style", "display: none;");
+highScores.setAttribute("style", "display: none;");
 
 var questionText = document.querySelector("#question-text");
 var answer1 = document.querySelector("#answer-1");
@@ -54,13 +56,32 @@ answer4.addEventListener("click", function () {
     nextQuestion(3);
 });
 
+var submit = document.querySelector("#submit");
+submit.addEventListener("click", submitInitials);
+
+var viewHighScore = document.querySelector("#view-high-score");
+viewHighScore.addEventListener("click", displayHighScores);
+
+var back = document.querySelector("#back");
+back.addEventListener("click", displayInstructions);
+
+var clear = document.querySelector("#clear");
+clear.addEventListener("click", clearHighScores);
+
 var startButton = document.querySelector("#start-quiz");
 // start quiz button makes timer and quiz begin
 startButton.addEventListener("click", startQuiz);
 displayQuestion(0);
 
+function displayInstructions() {
+    highScores.setAttribute("style", "display: none;");
+    instructions.setAttribute("style", "");
+}
+
 // displays the questions/starts the quiz
 function startQuiz() {
+    currentQuestion = 0;
+    timeLeft = 60;
     timer = startTimer();
     // display none hides the instructions
     instructions.setAttribute("style", "display: none;");
@@ -131,4 +152,48 @@ function startTimer() {
         }
     }, 1000);
     return timerInterval;
-  }
+}
+
+function submitInitials(event) {
+    event.preventDefault();
+    
+    var initialsInput = document.querySelector("#initials");
+
+    var score = {
+        initials: initialsInput.value.trim(),
+        score: timeLeft
+    };
+
+    // if scores is null use an empty array
+    var scores = JSON.parse(localStorage.getItem("score")) ?? [];
+    console.log("score:", scores);
+    scores.push(score);
+    localStorage.setItem("score", JSON.stringify(scores));
+    displayHighScores();
+}
+
+function displayHighScores() {
+    instructions.setAttribute("style", "display: none;");
+    ending.setAttribute("style", "display: none;");
+    highScores.setAttribute("style", "");
+
+    var scoreList = document.querySelector("#scores");
+    scoreList.textContent = "";
+
+    var scores = JSON.parse(localStorage.getItem("score"));
+
+    for (var count = 0; count < scores.length; count++) {
+        var score = scores[count];
+        var scoreListItem = document.createElement("li");
+
+        scoreListItem.textContent = score.initials + " - " + score.score;
+        
+        scoreList.appendChild(scoreListItem);
+    }
+}
+
+function clearHighScores() {
+    var scoreList = document.querySelector("#scores");
+    scoreList.textContent = "";
+    localStorage.setItem("score", JSON.stringify([]));
+}

@@ -55,6 +55,7 @@ header {
 
 .card-footer {
   text-align: center;
+  font-size: 25px
 }
 
 .card-footer::before {
@@ -118,4 +119,7 @@ button {
 button {
   flex-wrap: none;
   display: block;
+}
+#initials {
+  font-size: larger;
 }
