@@ -137,6 +137,11 @@ function displayResult(isCorrect) {
     }
 }
 
+function clearResult() {
+    var result = document.querySelector("#result");
+    result.textContent = "";    
+}
+
 function startTimer() {
     var timer = document.querySelector("#time-left");
     timer.textContent = timeLeft;
@@ -173,6 +178,7 @@ function submitInitials(event) {
 }
 
 function displayHighScores() {
+    clearResult();
     instructions.setAttribute("style", "display: none;");
     ending.setAttribute("style", "display: none;");
     highScores.setAttribute("style", "");
